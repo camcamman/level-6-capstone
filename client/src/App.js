@@ -25,6 +25,7 @@ import GroceryDetails from "./pages/GroceryDetails";
 import KitchenDetails from "./pages/KitchenDetails";
 import SalesDetails from "./pages/SaleDetails";
 import RecipeDetails from "./pages/RecipeDetails";
+import LoginPage from "./pages/Auth";
 
 // Components
 import Footer from "./components/Footer";
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route path="" element={<HomeLayout />} />
+      <Route path="auth" element={<LoginPage />}/>
       <Route path="recipes" element={<Recipes />} />
       <Route path="groceries" element={<Groceries />} />
       <Route path="kitchen" element={<Kitchen />} />

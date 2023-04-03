@@ -1,0 +1,100 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type='text'],
+  input[type='password'] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .password-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .submit-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb
+  } 
+  
+  
+
+
+
+  .switch {
+    color: rgb(0, 78, 54);
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .switch:hover {
+    /* color: #ffffff; */
+    text-decoration: underline;
+  }
+
+
+
+
+
+
+  
+  
+  .btn-login {
+    background-color: rgb(0, 78, 54);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .btn-login:hover {
+    background-color: #26714c;
+  }
+  
