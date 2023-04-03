@@ -1,0 +1,32 @@
+
+.faq {
+    margin-top: 2rem;
+    width: 60%;
+}
+
+.faq-common, .question-wrapper {
+    border-bottom: .0625rem solid #cac8c4;
+}
+
+.question-wrapper:last-child {
+    border-bottom: none;
+}
+
+.question-wrapper {
+    margin: 1.5rem 0;
+    color: #2E2D2B;
+    line-height: 1.75;
+}
+
+.question {
+    color: #004E36;
+}
+
+.question-wrapper p {
+    margin-top: 1rem;
+}
+
+.question-wrapper li {
+    list-style: inside;
+    margin-left: 1rem;
+}

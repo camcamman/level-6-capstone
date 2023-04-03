@@ -1,0 +1,38 @@
+  .contact {
+    width: 60%;
+    margin-top: 2rem;
+    min-width: 300px;
+  }
+  
+  .heading {
+    text-align: left;
+    margin-bottom: 2rem;
+    border-bottom: .0625rem solid #cac8c4;
+
+  }
+  .name,
+  .email,
+  .message {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+  .message {
+    height: 10rem;
+  }
+  .submit {
+    background-color: #004E36;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .submit:hover {
+    background-color:#004E36;
+  }
+  

@@ -1,0 +1,100 @@
+footer{
+    background-color: #004E36;
+    color: whitesmoke;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+        "logo . . carrot"
+        "shopping about help carrot"
+        ". icons icons carrot"
+        ". . . .";
+    justify-items: center;
+    padding: 2rem 1rem 0 1rem;
+    padding-bottom: 1rem;
+}
+.help, .about, .shopping {
+    margin: 0.5rem;
+}
+footer h2 {
+    margin-bottom: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    height: 150px;
+    width: 150px;
+    grid-area: logo;
+}
+
+.carrot {
+    grid-area: carrot;
+    justify-self: end;
+}
+
+.shopping {
+    grid-area: shopping;
+    
+}
+
+.about {
+    grid-area: about;
+}
+
+.help {
+    grid-area: help;
+}
+
+.icons {
+    grid-area: icons;
+    font-size: 1.3rem;
+}
+
+.icons a {
+    color: white;
+    margin: 0 .5rem;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+@media screen and (max-width: 600px) {
+   .carrot {
+    display: none;
+   }
+}
+
+@media screen and (max-width: 320px) {
+    footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "logo"
+        "shopping" 
+        "about" 
+        "help"
+        "icons"
+        ".";
+    justify-items: left;
+    gap: 10px;
+    }
+    
+    .logo {
+        justify-self: center;
+    }
+    
+}

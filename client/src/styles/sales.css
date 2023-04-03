@@ -1,0 +1,46 @@
+.sales {
+    padding: 2rem;
+}
+
+.sales-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    justify-items: center;
+    padding: 2rem;
+}
+
+.filter-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.filter-type {
+    font-size: 14px;
+}
+
+.filter-form {
+    color: #004E36;
+    margin-top: .5rem;
+    width: 150px;
+    padding: 5px 10px;
+    border: 1px solid #004E36;
+}
+
+@media screen and (max-width: 960px) {
+    .sales-wrapper {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .sales-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 500px) {
+    .sales-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,172 @@
+.help-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2rem;
+    overflow: hidden;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    background-color: #F8F7F5;
+    display: flex;
+    align-items: center;
+    height: 13rem;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.main {
+    display: relative;
+}
+
+
+header h1 {
+    color: #2E2D2B;
+    margin-top: 4rem;
+    font-size: 3.25rem;
+}
+
+header img {
+    position: absolute;
+    width: 30rem;
+    top: 0;
+    z-index: 2;
+    margin-right: -90%;
+    height: auto;
+    display: block;
+    
+}
+
+.help-section {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+    ". . . meals-left . meals-right meals-right meals-right . . ."
+    ". . . plus-left . plus-right plus-right plus-right . . ."
+    ". . . giftcard-left . giftcard-right giftcard-right giftcard-right . . ."
+;
+    color: #2E2D2B;
+}
+
+.meals-left {
+    grid-area: meals-left;
+}
+
+.meals-right {
+    grid-area: meals-right;
+}
+
+.plus-left {
+    grid-area: plus-left;
+}
+
+.plus-right {
+    grid-area: plus-right;
+}
+
+.giftcard-left {
+    grid-area: giftcard-left;
+}
+
+.giftcard-right {
+    grid-area: giftcard-right;
+}
+
+.meals-left, .plus-left, .giftcard-left, .help-section p {
+    margin: 30px 0;
+}
+
+
+.help-section img {
+    position: absolute;
+    width: 30rem;
+    bottom: -160px;
+    left: -200px;
+    z-index: 2;
+    height: auto;
+}
+
+.help-section h1 {
+    font-size: 2.5rem;
+}
+
+.help-section h2, .help-section a {
+    color: black;
+    font-size: 1.35rem;
+    line-height: 1.75;
+}
+
+.help-section a {
+    color: #004e36;
+    text-decoration: none;
+}
+
+.help-section h4 {
+    margin-top: 30px;
+    color: #004e36;
+}
+
+.help-section h4:hover, .help-section a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.help-left {
+    width: 180px;
+    margin-right: 5rem;
+}
+
+.help-nav {
+    text-align: center;
+    margin-top: 3rem;
+}
+.help-nav h3, .help-nav p {
+    margin-bottom: 1rem;
+}
+
+.help-nav a {
+    background-color: #004e36;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #fff;
+    margin-left: 1rem;
+}
+
+
+
+@media screen and (max-width: 1100px) {
+    header img, .help-section img {
+        display: none;
+    }
+
+    .help-section {
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas:
+        ". meals-left . meals-right meals-right meals-right ."
+        ". plus-left . plus-right plus-right plus-right ."
+        ". giftcard-left . giftcard-right giftcard-right giftcard-right ."
+    ;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .help-section {
+        grid-template-columns: .1fr 1fr .1fr;
+        grid-template-areas:
+        ". meals-left ."
+        " . meals-right ."
+        " . plus-left ."
+        " . plus-right ."
+        " . giftcard-left ."
+        " . giftcard-right ."
+    ;
+    }    
+}
+
+

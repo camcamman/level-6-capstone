@@ -1,0 +1,101 @@
+.cart-item-wrapper {
+    border-bottom: 1px solid rgb(244, 240, 240);
+    padding: 1rem;
+}
+.cart-product-details {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;  
+    grid-template-areas: 
+    ". img name name price .";  
+}
+
+.cart-product-details img {
+    grid-area: img;
+    max-width: 100px;
+}
+
+.product-price {
+    padding-top: 1rem;
+    grid-area: price;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cart-product-details .product-name {
+    grid-area: name;
+    font-size: 1rem;
+    line-height: 1.25;
+    padding-top: 1rem;
+    max-width: 150px;
+}
+.cart-product-details button {
+    margin-top: 1rem;
+    color: white;
+    background-color: #004E36;
+    width: 60px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.cart-product-details button:hover {
+    background-color: #043828;
+}
+
+.add-remove-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.operators-wrapper {
+    border: 1px solid rgb(138, 135, 135);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 120px;
+    height: 2.2rem;
+    padding: 3px;
+    border-radius: 25px;
+}
+
+.operators-wrapper p {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.operators-wrapper .fa-solid {
+    padding: 8px;    
+    background-color: white;
+    font-size: .8rem;
+    border: none;
+    border-radius: 50%;
+    box-shadow: none;
+    color: rgb(104, 98, 98);
+}
+
+.operators-wrapper .fa-solid:hover {
+    color: white;
+    background-color: rgb(114, 110, 110);
+}
+
+.add-remove-wrapper .item-remove-button {
+    margin-right: 5rem;
+    font-size: 1.17rem;
+    background-color: white;
+    border: none;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.add-remove-wrapper .item-remove-button:hover {
+    cursor: pointer;
+}
+
+
+
+
+

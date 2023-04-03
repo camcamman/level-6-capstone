@@ -1,0 +1,41 @@
+.recipe {
+    margin-top: 1rem;
+    height: 330px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.image-container {
+    border-radius: 5px;
+    max-width: 300px; /* set the width of the container to your desired size */
+    height: 200px; /* set the height of the container to your desired size */
+    overflow: hidden; /* hide any content that goes beyond the container */
+  }
+
+  .recipe img {
+    width: 100%; /* set the width of the image to 100% to fill the container */
+    height: auto; /* allow the height to adjust proportionally */
+    object-fit: cover; /* scale the image to cover the entire container */
+  }
+
+.recipe-name {
+    max-width: 200px;
+    margin-top: 1rem;
+}
+
+.recipes button {
+    margin-top: 1rem;
+    color: white;
+    background-color: #004E36;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.recipes button:hover {
+    background-color: #043828;
+}
+
