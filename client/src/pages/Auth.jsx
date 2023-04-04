@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-// import './App.css';
-import '../styles/LoginPage.css'
-// import React, { useState } from 'react';
-// import './App.css';
+import '../styles/LoginPage.css';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -32,26 +29,28 @@ function App() {
 
   return (
     <div className="App">
-      <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">{isLogin ? 'Username' : 'Username'}</label>
-          <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+        <div className="login-page-container">
+        <h1 className="login-page-heading">{isLogin ? 'Login' : 'Sign Up'}</h1>
+        <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+            <label htmlFor="username" className="form-label">{isLogin ? 'Username' : 'Email'}</label>
+            <input type="text" id="username" className="form-input" value={username} onChange={handleUsernameChange} />
+            </div>
+            <div className="form-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <div className="password-input">
+                <input type={showPassword ? 'text' : 'password'} id="password" className="form-input" value={password} onChange={handlePasswordChange} />
+                <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
+                </span>
+            </div>
+            </div>
+            <button type="submit" className="btn btn-login">{isLogin ? 'Login' : 'Sign Up'}</button>
+        </form>
+        <p className="switch-text">{isLogin ? "Don't have an account?" : 'Already have an account?'}
+            <span className="switch" onClick={handleSwitch}>{isLogin ? 'Sign up' : 'Log in'}</span>
+        </p>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <div className="password-input">
-            <input type={showPassword ? 'text' : 'password'} id="password" value={password} onChange={handlePasswordChange} />
-            <span className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
-            </span>
-          </div>
-        </div>
-        <button type="submit" className="btn btn-login">{isLogin ? 'Login' : 'Sign Up'}</button>
-      </form>
-      <p>{isLogin ? "Don't have an account?" : 'Already have an account?'}
-        <span className="switch" onClick={handleSwitch}>{isLogin ? 'Sign up' : 'Log in'}</span>
-      </p>
     </div>
   );
 }

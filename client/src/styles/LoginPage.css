@@ -1,9 +1,15 @@
+/* General styles */
+
 .App {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+  }
+  
+  h1 {
+    margin-bottom: 2rem;
   }
   
   form {
@@ -11,90 +17,108 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    border-radius: 10px;
-    padding: 50px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 30rem;
   }
   
   .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
     width: 100%;
   }
   
   label {
-    margin-bottom: 5px;
+    display: block;
+    margin-bottom: 0.5rem;
     font-weight: bold;
   }
   
-  input[type='text'],
-  input[type='password'] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid black;
-    font-size: 16px;
+  input[type="text"],
+  input[type="password"] {
+    display: block;
     width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #f1f1f1;
+    font-size: 1rem;
+  }
+  
+  input[type="password"] {
+    padding-right: 2rem;
   }
   
   .password-input {
     position: relative;
-    display: flex;
-    align-items: center;
   }
   
   .password-toggle {
     position: absolute;
-    right: 10px;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
     cursor: pointer;
   }
   
-  .submit-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border-radius: 5px;
+  .btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
     border: none;
-    background-color: rgb
-  } 
-  
-  
-
-
-
-  .switch {
-    color: rgb(0, 78, 54);
-    cursor: pointer;
+    font-size: 1rem;
     font-weight: bold;
-    margin-left: 5px;
+    text-align: center;
     text-decoration: none;
-    transition: color 0.2s ease-in-out;
+    color: #fff;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Login-specific styles */
+  
+  .btn-login {
+    width: 100%;
+  }
+  
+  .switch {
+    margin-left: 0.5rem;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
   }
   
   .switch:hover {
-    /* color: #ffffff; */
-    text-decoration: underline;
+    color: #0056b3;
   }
-
-
-
-
-
-
   
+  /* Sign up-specific styles */
   
+  .btn-signup {
+    width: 100%;
+    background-color: #28a745;
+  }
+  
+  .btn-signup:hover {
+    background-color: #218838;
+  }
+  
+  .password-strength {
+    margin-top: 0.5rem;
+    color: #dc3545;
+    font-size: 0.8rem;
+  }
+  
+
+
+
+
+
+
   .btn-login {
-    background-color: rgb(0, 78, 54);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 10px;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .btn-login:hover {
-    background-color: #26714c;
+    margin-bottom: 10px;
   }
   
