@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import '../styles/LoginPage.css';
 
 function App() {
@@ -15,10 +16,63 @@ function App() {
     setPassword(event.target.value);
   };
 
+  // const handleLogin = async (credentials) => {
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('token')}`
+  //       }
+  //     };
+  
+  //     const response = await axios.post('/auth/signup', credentials, config);
+  //     const { token } = response.data;
+  //     // Save the token in local storage or in a cookie
+  
+  //     localStorage.setItem('token', token)
+  //     // localStorage.setItem('user', JSON.stringify(user))
+  
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };  
+
+  // const handleSignup = async (credentials) => {
+  //   try {
+  //     const response = await axios.post('/auth/signup', credentials);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  const handleSignup = async (credentials) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      };
+  
+      const response = await axios.post('/auth/signup', credentials, config);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${username}`);
-    console.log(`Password: ${password}`);
+
+    const cred = {
+      username: username,
+      password: password
+    }
+
+    if (isLogin) {
+      // handleLogin(cred);
+      console.log('Login not implemented yet');
+    } else {
+      handleSignup(cred);
+    }
   };
 
   const handleSwitch = () => {
@@ -33,7 +87,7 @@ function App() {
         <h1 className="login-page-heading">{isLogin ? 'Login' : 'Sign Up'}</h1>
         <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-            <label htmlFor="username" className="form-label">{isLogin ? 'Username' : 'Email'}</label>
+            <label htmlFor="username" className="form-label">{isLogin ? 'Username' : 'Username'}</label>
             <input type="text" id="username" className="form-input" value={username} onChange={handleUsernameChange} />
             </div>
             <div className="form-group">
