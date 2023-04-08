@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CartProvider } from './CartContext';
-import { AuthProvider } from './authContext';
+import AuthProvider from './authContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

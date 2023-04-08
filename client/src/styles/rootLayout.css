@@ -97,6 +97,21 @@
     border-radius: 50%;
     color: white;
   }
+
+  .logout-btn {
+    background-color: #fff;
+    color: #004E36;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+  
+  .logout-btn:hover {
+    background-color: #004E36;
+    color: #fff;
+  }
   
   @media screen and (max-width: 960px) {
     .nav-menu {

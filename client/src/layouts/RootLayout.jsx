@@ -3,11 +3,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import CartDropDown from "../components/CartDropDown";
 import CartItem from "../components/CartItem"
 import { CartContext } from "../CartContext";
+import useAuth from "../authContext";
 import "../styles/rootLayout.css";
 
 const RootLayout = () => {
 
+  // const { AuthContext } = useAuth
+
   const cart = useContext(CartContext);
+  const auth = useContext( useAuth );
 
   //show how many items in cart 
   const productCount = cart.items.reduce(
@@ -21,6 +25,11 @@ const RootLayout = () => {
   const toggleHidden = () => setHidden(!hidden) 
 
   const handleClick = () => setClick((prevClick) => !prevClick);
+  
+  const handleLogout = () => {
+    auth.logout();
+  };
+
   return (
     <>
       <nav className="navbar">
@@ -76,8 +85,8 @@ const RootLayout = () => {
                 Help
               </NavLink>
             </li>
-            
           </ul>
+          
           <div className="nav-item-cart">
               <i
                 className="fa-solid fa-cart-shopping"
@@ -89,6 +98,10 @@ const RootLayout = () => {
                 </p>
             </div>
           {hidden ? null : <CartDropDown />}
+          
+          <div class="logout-btn" onClick={handleLogout}>
+            Logout
+          </div>
 
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>

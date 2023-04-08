@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginPage.css';
+import useAuth from '../authContext';
 
-function App() {
+function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+
+  const { login, signup } = useAuth();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -18,8 +21,7 @@ function App() {
 
   const handleSignup = async (credentials) => {
     try {
-      const response = await axios.post('/auth/signup', credentials);
-      console.log(response.data);
+      await signup(credentials);
     } catch (error) {
       console.error(error);
     }
@@ -27,9 +29,7 @@ function App() {
 
   const handleLogin = async (credentials) => {
     try {
-      const response = await axios.post('/auth/login', credentials);
-      localStorage.setItem('token', response.data.token);
-      console.log(response.data.user);
+      await login(credentials);
     } catch (error) {
       console.error(error);
     }
@@ -93,4 +93,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginPage;
