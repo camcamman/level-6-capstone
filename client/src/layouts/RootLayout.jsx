@@ -99,7 +99,7 @@ const RootLayout = () => {
             </div>
           {hidden ? null : <CartDropDown />}
           
-          <div class="logout-btn" onClick={handleLogout}>
+          <div className="logout-btn" onClick={handleLogout}>
             Logout
           </div>
 

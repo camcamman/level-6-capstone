@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginPage.css';
-import useAuth from '../authContext';
+import { userContext } from '../authContext';
+
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
 
-  const { login, signup } = useAuth();
+  const { login, signup } = useContext(userContext);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);

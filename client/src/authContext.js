@@ -85,17 +85,29 @@ export default function AuthContext (props) {
           errMsg: ""
         }))
       }
-      return(
-        <AuthContext.Provider
-            value={{
-                ...userState,
-                signup,
-                login,
-                logout,
-            }}>
-            {props.children}
-        </AuthContext.Provider>
-    )
+    //   return(
+    //     <userContext.Provider
+    //         value={{
+    //             ...userState,
+    //             signup,
+    //             login,
+    //             logout,
+    //         }}>
+    //         {props.children}
+    //     </userContext.Provider>
+    // )
+      return (
+        <userContext.Provider
+          value={{
+            ...userState,
+            signup,
+            login,
+            logout,
+          }}>
+          {props.children}
+        </userContext.Provider>
+      );
+    
 // }
 }
 
