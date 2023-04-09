@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import CartDropDown from "../components/CartDropDown";
 import CartItem from "../components/CartItem"
 import { CartContext } from "../CartContext";
-import useAuth from "../authContext";
+import { userContext } from "../authContext";
 import "../styles/rootLayout.css";
 
 const RootLayout = () => {
@@ -11,7 +11,7 @@ const RootLayout = () => {
   // const { AuthContext } = useAuth
 
   const cart = useContext(CartContext);
-  const auth = useContext( useAuth );
+  const { logout } = useContext( userContext );
 
   //show how many items in cart 
   const productCount = cart.items.reduce(
@@ -27,7 +27,7 @@ const RootLayout = () => {
   const handleClick = () => setClick((prevClick) => !prevClick);
   
   const handleLogout = () => {
-    auth.logout();
+    logout();
   };
 
   return (
