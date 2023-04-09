@@ -2,24 +2,30 @@ import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginPage.css';
 import { userContext } from '../authContext';
-
+import { NavLink, Navigate } from 'react-router-dom';
 
 function LoginPage() {
+  // State variables to store the username, password, and whether or not to show the password
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  // State variable to determine whether the user is trying to log in or sign up
   const [isLogin, setIsLogin] = useState(true);
 
+  // Access the login and signup functions from the authContext
   const { login, signup } = useContext(userContext);
 
+  // Function to handle changes in the username input field
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
 
+  // Function to handle changes in the password input field
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+  // Function to handle user sign up
   const handleSignup = async (credentials) => {
     try {
       await signup(credentials);
@@ -28,6 +34,7 @@ function LoginPage() {
     }
   };
 
+  // Function to handle user login
   const handleLogin = async (credentials) => {
     try {
       await login(credentials);
@@ -36,14 +43,18 @@ function LoginPage() {
     }
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    // Credentials object containing the username and password
     const cred = {
       username: username,
       password: password,
     };
 
+    // If the user is trying to log in, call the handleLogin function
+    // Otherwise, call the handleSignup function
     if (isLogin) {
       handleLogin(cred);
     } else {
@@ -51,12 +62,14 @@ function LoginPage() {
     }
   };
 
+  // Function to switch between login and sign up modes
   const handleSwitch = () => {
     setIsLogin(!isLogin);
     setUsername('');
     setPassword('');
   };
 
+  // Render the login/sign up form
   return (
     <div className="App">
       <div className="login-page-container">
@@ -79,9 +92,13 @@ function LoginPage() {
               </span>
             </div>
           </div>
+
+          {/* Button to submit the form */}
           <button type="submit" className="btn btn-login">
             {isLogin ? 'Login' : 'Sign Up'}
+            {/* If the user is already logged in, redirect*/}
           </button>
+          
         </form>
         <p className="switch-text">
           {isLogin ? "Don't have an account?" : 'Already have an account?'}

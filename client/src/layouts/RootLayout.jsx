@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import CartDropDown from "../components/CartDropDown";
 import CartItem from "../components/CartItem"
 import { CartContext } from "../CartContext";
