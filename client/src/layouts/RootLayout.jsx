@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import CartDropDown from "../components/CartDropDown";
 import CartItem from "../components/CartItem"
 import { CartContext } from "../CartContext";
@@ -7,25 +7,21 @@ import { userContext } from "../authContext";
 import "../styles/rootLayout.css";
 
 const RootLayout = () => {
-
-  // const { AuthContext } = useAuth
-
   const cart = useContext(CartContext);
-  const { logout } = useContext( userContext );
+  const { logout } = useContext(userContext);
 
-  //show how many items in cart 
   const productCount = cart.items.reduce(
     (sum, product) => sum + product.quantity,
     0
   );
 
   const [click, setClick] = useState(false);
-  const [hidden, setHidden] = useState(true)
+  const [hidden, setHidden] = useState(true);
 
-  const toggleHidden = () => setHidden(!hidden) 
+  const toggleHidden = () => setHidden(!hidden);
 
   const handleClick = () => setClick((prevClick) => !prevClick);
-  
+
   const handleLogout = () => {
     logout();
   };
@@ -86,25 +82,26 @@ const RootLayout = () => {
               </NavLink>
             </li>
           </ul>
-          
+
           <div className="nav-item-cart">
-              <i
-                className="fa-solid fa-cart-shopping"
-                onClick={() => toggleHidden()}
-              >
-              </i>
-              <p className="product-count">
-                {productCount}
-                </p>
-            </div>
+            <i className="fa-solid fa-cart-shopping" onClick={() => toggleHidden()}>
+            </i>
+            <p className="product-count">{productCount}</p>
+          </div>
           {hidden ? null : <CartDropDown />}
-          
-          {/* <div className="logout-btn" onClick={handleLogout}>
-            Logout
-          </div> */}
-          <div className="logout-btn" onClick={handleLogout}>
-            {localStorage.getItem("token") ? 'Logout' : 'Sign in' }
-            {/* Logout */}
+
+          <div>
+            <div>
+              {localStorage.getItem("token") ? (
+                <div className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </div>
+              ) : (
+                <NavLink to="/auth" className="logout-btn">
+                  Sign in
+                </NavLink>
+              )}
+            </div>
           </div>
 
           <div className="nav-icon" onClick={handleClick}>
