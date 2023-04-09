@@ -99,8 +99,12 @@ const RootLayout = () => {
             </div>
           {hidden ? null : <CartDropDown />}
           
-          <div className="logout-btn" onClick={handleLogout}>
+          {/* <div className="logout-btn" onClick={handleLogout}>
             Logout
+          </div> */}
+          <div className="logout-btn" onClick={handleLogout}>
+            {localStorage.getItem("token") ? 'Logout' : 'Sign in' }
+            {/* Logout */}
           </div>
 
           <div className="nav-icon" onClick={handleClick}>
