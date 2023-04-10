@@ -83,12 +83,17 @@ const RootLayout = () => {
             </li>
           </ul>
 
-          <div className="nav-item-cart">
-            <i className="fa-solid fa-cart-shopping" onClick={() => toggleHidden()}>
-            </i>
-            <p className="product-count">{productCount}</p>
-          </div>
-          {hidden ? null : <CartDropDown />}
+          {localStorage.getItem("token") ? 
+            <div className="nav-item-cart">
+              <i className="fa-solid fa-cart-shopping" onClick={() => toggleHidden()}>
+              </i>
+              <p className="product-count">{productCount}</p>
+            </div>
+            :
+            <div></div>
+          }
+
+          {hidden  ? null : <CartDropDown />}
 
           <div>
             <div>

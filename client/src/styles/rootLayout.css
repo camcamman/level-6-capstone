@@ -113,6 +113,18 @@
     background-color: #004E36;
     color: #fff;
   }
+
+  .error-message {
+    background-color: #ffe4e4;
+    color: #ff4f4f;
+    border: 1px solid #ff4f4f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }  
+  
   
   @media screen and (max-width: 960px) {
     .nav-menu {

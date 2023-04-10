@@ -2,7 +2,7 @@ import { createContext, useContext, useState } from 'react';
 import axios from 'axios';
 
 // Create a new context instance
-export const userContext = createContext();
+export const userContext = createContext([]);
 
 // Create an Axios instance with an authorization header
 const userAxios = axios.create();

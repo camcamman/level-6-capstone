@@ -43,9 +43,14 @@ authRouter.post('/signup', async (req, res) => {
     }
     // Create a new user with the provided username and password
     const newUser = new User({ username, password });
-    await newUser.save();
+    // await newUser.save();
+
+    const saveNewUser = await newUser.save()
+    const token = jwt.sign(saveNewUser.withoutPassword(), process.env.SECRET)
+
     // Return a success message
-    res.json({ message: 'Signup successful' });
+    // res.json({ message: 'Signup successful' });
+    return res.status(201).send({ token, user: saveNewUser.withoutPassword()})
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
