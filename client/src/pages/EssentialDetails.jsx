@@ -1,18 +1,17 @@
 import axios from 'axios'
 import React, { useState, useContext } from 'react'
 import { CartContext } from '../CartContext'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import "../styles/productDetails.css"
 import useEssentialDetails from '../hooks/useEssentialDetails'
+import { userContext } from '../authContext'
 
 const EssentialDetails = () => {
-
     const { id } = useParams()
-
     const { details, isLoaded} = useEssentialDetails(id)
-    
     const cart = useContext(CartContext)
     const productQuantity = cart.getProductQuantity(id)
+    const { loggedIn } = useContext(userContext)
   
     if(!isLoaded) return <h2>Loading...</h2>
 
@@ -24,16 +23,24 @@ const EssentialDetails = () => {
                     <div className="section-details">
                         <h3>{details.name}</h3>
                     <div className='section-add'>
-                        <p>${details.new_price}</p>
-                        {productQuantity > 0 ?
-                        <>
-                        <button onClick={() => cart.addOneToCart(id)} >+</button>
-                        <h1>{productQuantity}</h1>
-                        <button onClick={() => cart.removeOneFromCart(id)}>-</button>
-                        </>
-                        :    
-                        <button onClick={() => cart.addOneToCart(id)}>Add to cart</button>
-                    }
+                    {loggedIn 
+                        ? 
+                            productQuantity > 0 
+                            ?
+                                <>
+                                <button onClick={() => cart.addOneToCart(id)} >+</button>
+                                <h1>{productQuantity}</h1>
+                                <button onClick={() => cart.removeOneFromCart(id)}>-</button>
+                                </>
+                            :    
+                            <button onClick={() => cart.addOneToCart(id)}>Add to cart</button>
+                        : 
+                        <Link to={"/auth"}>
+                            <button>
+                                Sign in 
+                            </button>
+                        </Link>}
+
                     </div>
                     </div>
                 </section>

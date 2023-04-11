@@ -22,6 +22,8 @@ export default function AuthContext(props) {
     errMsg: '',
   });
 
+  const [loggedIn, setLoggedIn] = useState( localStorage.getItem('token') ? true : false)
+
   // Define a function to handle authentication errors and update the state with an error message
   const handleAuthErr = errMsg => {
     setUserState(prevUserState => ({
@@ -37,6 +39,7 @@ export default function AuthContext(props) {
         const { user, token } = res.data;
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
+        setLoggedIn(true)
         setUserState(prevUserState => ({
           ...prevUserState,
           user,
@@ -54,6 +57,7 @@ export default function AuthContext(props) {
         const { user, token } = res.data;
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
+        setLoggedIn(true)
         setUserState(prevUserState => ({
           ...prevUserState,
           user,
@@ -68,6 +72,8 @@ export default function AuthContext(props) {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    setLoggedIn(false)
+    userState.logedIn = false
     setUserState({
       user: {},
       token: '',
@@ -82,6 +88,7 @@ export default function AuthContext(props) {
         signup,
         login,
         logout,
+        loggedIn
       }}
     >
       {props.children}
