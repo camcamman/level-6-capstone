@@ -23,6 +23,7 @@ app.use("/kitchen", require("./routes/kitchenRouter"))
 app.use("/recipes", require("./routes/recipeRouter"))
 app.use("/sales", require("./routes/salesRouter"))
 app.use('/auth', require("./routes/authRouter"))
+app.use('/cart', require("./routes/cartRouter"))
 // app.use('/api', expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] })) 
 
 // Error Handling
