@@ -17,8 +17,7 @@ const AllEssential = ({
   fullState,
 }) => {
 
-  // const newCartObj = {...fullState, user: JSON.parse(localStorage.getItem("user"))._id}
-
+  // Fetch cart data from the server on component mount
   useEffect(() => {
     axios.get("/cart")
     .then(res => 
@@ -29,17 +28,19 @@ const AllEssential = ({
       .catch(err => console.error(err))
     }, [])
 
+  // Access cart and loggedIn state from context
   const cart = useContext(CartContext)
   const { loggedIn } = useContext(userContext)
 
   return (
     <section className="essential-product">
       <Link to={`/essentialdetails/${id}`} style={{textDecoration: "none", color: "white"}}>
-           <img src={imgUrl} alt={name} />
-    </Link>
+        <img src={imgUrl} alt={name} />
+      </Link>
 
-    {loggedIn 
-      ? 
+      {/* Show "Add" button if user is logged in, otherwise show "Sign in" button */}
+      {loggedIn 
+        ? 
         <button onClick={() => {
           const newCartObj = {
             ...fullState, 
@@ -51,12 +52,12 @@ const AllEssential = ({
         }}>
           <i className="fa-solid fa-plus"></i> Add
         </button>
-      : 
-      <Link to={"/auth"}>
+        : 
+        <Link to={"/auth"}>
           <button>
             Sign in 
           </button>
-      </Link>}
+        </Link>}
 
       <div className="price-wrapper">
         <p className="product-new-price">Now ${newPrice}</p>
