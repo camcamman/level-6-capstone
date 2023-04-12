@@ -1,9 +1,10 @@
-import { useContext } from 'react'; // import necessary hooks
+import { useContext, useEffect } from 'react'; // import necessary hooks
 import { CartContext } from '../CartContext'; // import CartContext for cart management
 import { Link, useParams } from 'react-router-dom'; // import Link and useParams for routing
 import useEssentialDetails from '../hooks/useEssentialDetails'; // import custom hook
 import { userContext } from '../authContext'; // import userContext for user authentication
 import '../styles/productDetails.css'; // import component-specific styles
+import axios from 'axios';
 
 const EssentialDetails = () => {
   const { id } = useParams(); // get the ID from the URL params
@@ -12,8 +13,8 @@ const EssentialDetails = () => {
   const productQuantity = cart.getProductQuantity(id); // get the quantity of this product in the cart
   const { loggedIn } = useContext(userContext); // get the logged-in status from the user context
 
-  if (!isLoaded) return <h2>Loading...</h2>; // show loading message while data is being fetched
-
+    if (!isLoaded) return <h2>Loading...</h2>; // show loading message while data is being fetched
+    
   // return the JSX for the component
   return (
     <div className="details-container">

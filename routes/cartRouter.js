@@ -28,8 +28,8 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create a new cart
-router.post('/:id', async (req, res) => {
-    req.body.user = req.params.id
+router.post('/', async (req, res) => {
+    // req.body.user = req.params.id
   const cart = new Cart({
     name: req.body.name,
     description: req.body.description,
@@ -52,26 +52,18 @@ router.post('/:id', async (req, res) => {
 // Update a cart by ID
 router.patch('/:id', async (req, res) => {
   try {
-    const cart = await Cart.findById(req.params.id);
-    if (cart) {
-      cart.name = req.body.name || cart.name;
-      cart.description = req.body.description || cart.description;
-      cart.details = req.body.details || cart.details;
-      cart.old_price = req.body.old_price || cart.old_price;
-      cart.new_price = req.body.new_price || cart.new_price;
-      cart.imgUrl = req.body.imgUrl || cart.imgUrl;
-      cart.type = req.body.type || cart.type;
-      cart.user = req.body.user || cart.user;
+    const cartId = req.params.id;
+    const newCart = req.body
 
-      const updatedCart = await cart.save();
-      res.json(updatedCart);
-    } else {
-      res.status(404).json({ message: 'Cart not found' });
-    }
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const updatedCart = await Cart.findOneAndUpdate({ _id: cartId }, newCart, { new: true })
+
+    return res.status(200).send(updatedCart)
+  } catch (error) {
+    console.error(error)
+    return res.status(500).send('Internal Server Error')
   }
-});
+})
+
 
 // Delete a cart by ID
 router.delete('/:id', async (req, res) => {

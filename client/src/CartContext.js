@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext({
     items: [],
@@ -10,6 +11,7 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({children}) {
+
     const [cartProducts, setCartProducts] = useState([]);
     
     function getProductQuantity(id) {
@@ -22,10 +24,15 @@ export function CartProvider({children}) {
         return quantity;
     }
 
-    function addOneToCart(id) {
+    function addOneToCart(id, newCart) {
         const quantity = getProductQuantity(id);
 
         if (quantity === 0) {
+
+            axios.post("/cart", newCart)
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err))
+
             setCartProducts(
                 [
                     ...cartProducts,
@@ -36,6 +43,12 @@ export function CartProvider({children}) {
                 ]
             )
         } else { 
+
+            const upCount = {
+                quantity: quantity +1 
+            }
+            axios.patch(`cart/${id}`, upCount)
+
             setCartProducts(
                 cartProducts.map(
                     product =>
@@ -45,6 +58,8 @@ export function CartProvider({children}) {
                 )
             )
         }
+        // console.log("cartProducts after add to cart")
+        // console.log(cartProducts)
     }
 
     function removeOneFromCart(id) {
@@ -52,7 +67,13 @@ export function CartProvider({children}) {
 
         if(quantity === 1) {
             deleteFromCart(id);
+            // axios.delete(`cart/${id}`)
         } else {
+            const downCount = {
+                quantity: quantity -1 
+            }
+            axios.patch(`cart/${id}`, downCount)
+            // axios.put(`cart/6436f502b5948774c03dbc0c`, downCount)
             setCartProducts(
                 cartProducts.map(
                     product =>
@@ -65,6 +86,9 @@ export function CartProvider({children}) {
     }
 
     function deleteFromCart(id) {
+
+        axios.delete(`cart/${id}`)
+
         setCartProducts(
             cartProducts =>
             cartProducts.filter(currentProduct => {

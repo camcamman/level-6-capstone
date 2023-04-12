@@ -11,21 +11,43 @@ const CartDropdown = () => {
   const [kitchenState, setKitchenState] = useState([])
   const [groceries, setGroceries] = useState([]);
   const [sales, setSales] = useState([]);
+  const [apiCart, setApiCart] = useState([]);
 
   // set context
   const cart = useContext(CartContext);
 
   //show how many items in cart 
-  const productCount = cart.items.reduce(
+  const [productCount, setProductCount] = useState(cart.items.reduce(
     (sum, product) => sum + product.quantity,
     0
-  );
+  ))
 
   useEffect(() => {
     apiCall("essentials", setEssentials)
     apiCall("groceries", setGroceries)
     apiCall("kitchen", setKitchenState)
     apiCall("sales", setSales)
+    apiCall("cart", setApiCart)
+  }, [])
+  
+  useEffect(() => {
+    axios.get("cart")
+    .then(res => {
+      res.data.map(item => {
+        if (JSON.parse(localStorage.getItem('user'))._id === item.user) {
+          console.log("match")
+          // setApiCart(res.data)
+          setApiCart(prevCart => {
+            return[
+              ...prevCart,
+              item
+            ]
+          })
+          setProductCount(prevCount => prevCount + 1)
+        }
+      })
+    })
+    .catch(err => console.error(err))
   }, [])
 
   function apiCall (url, setState) {
@@ -61,8 +83,7 @@ const CartDropdown = () => {
         )
       })}
 
-{kitchenState.map(item => {
-        console.log(item._id)
+      {kitchenState.map(item => {
         return(
           <CartItem
             item={item}
@@ -81,15 +102,11 @@ const CartDropdown = () => {
         )
       })}
       {essentials.map(item => {
-        return(
-          <CartItem
-            item={item}
-            key={item._id}
-            quantity={cart.getProductQuantity(item.id)}
-          />
-        )
-      })}
-      {kitchenState.map(item => {
+        // apiCart.map(cartItem => {
+        //   if (item._id === cartItem._id) {
+            
+        //   }
+        // })
         return(
           <CartItem
             item={item}
@@ -107,7 +124,17 @@ const CartDropdown = () => {
           />
         )
       })}
-        <button>Checkout ({productCount} Items)</button>
+      {apiCart.map(item => {
+        return(
+          <CartItem
+            item={item}
+            key={item._id}
+            // quantity={item.quantity}
+            quantity={item.quantity}
+          />
+        )
+      })}
+        {/* <button>Checkout ({productCount} Items)</button> */}
       </div>
         <button className='checkout-button'>Checkout</button>
     </div>

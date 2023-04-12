@@ -1,19 +1,32 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import CartDropDown from "../components/CartDropDown";
 import CartItem from "../components/CartItem"
 import { CartContext } from "../CartContext";
 import { userContext } from "../authContext";
 import "../styles/rootLayout.css";
+import axios from "axios";
 
 const RootLayout = () => {
   const cart = useContext(CartContext);
   const { logout } = useContext(userContext);
 
-  const productCount = cart.items.reduce(
+  const [productCount, setProductCount] = useState(cart.items.reduce(
     (sum, product) => sum + product.quantity,
     0
-  );
+  ))
+
+  useEffect(() => {
+    axios.get("cart")
+    .then(res => {
+      res.data.map(item => {
+        if (JSON.parse(localStorage.getItem('user'))._id === item.user) {
+          setProductCount(prevCount => prevCount + 1)
+        }
+      })
+    })
+    .catch(err => console.error(err))
+  }, [])
 
   const [click, setClick] = useState(false);
   const [hidden, setHidden] = useState(true);

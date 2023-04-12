@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from '../CartContext'
 import "../styles/allEssential.css";
 import { Link } from "react-router-dom"
 import { userContext } from "../authContext";
+import axios from "axios";
 
 const AllEssential = ({
   name,
@@ -16,6 +17,18 @@ const AllEssential = ({
   fullState,
 }) => {
 
+  // const newCartObj = {...fullState, user: JSON.parse(localStorage.getItem("user"))._id}
+
+  useEffect(() => {
+    axios.get("/cart")
+    .then(res => 
+      res.data.map(cartItem => {
+        cart.addOneToCart(cartItem._id)
+      }
+      ))
+      .catch(err => console.error(err))
+    }, [])
+
   const cart = useContext(CartContext)
   const { loggedIn } = useContext(userContext)
 
@@ -27,7 +40,15 @@ const AllEssential = ({
 
     {loggedIn 
       ? 
-        <button onClick={() => cart.addOneToCart(id)}>
+        <button onClick={() => {
+          const newCartObj = {
+            ...fullState, 
+            user: JSON.parse(localStorage.getItem("user"))._id,
+            quantity: 1
+          }
+
+          cart.addOneToCart(id, newCartObj)
+        }}>
           <i className="fa-solid fa-plus"></i> Add
         </button>
       : 

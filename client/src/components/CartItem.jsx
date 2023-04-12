@@ -4,10 +4,28 @@ import "../styles/cartItem.css"
 
 export default function CartItem(props) {
 
+  const [quantityState, setQuantityState] = useState(props.quantity)
   const cart = useContext(CartContext);
-  const productQuantity = cart.getProductQuantity(props.item._id);
+  // // cart.getProductQuantity(props.item._id) = props.quantity
+  // const productQuantity = cart.getProductQuantity(props.item._id);
+  // // const productQuantity = props.quantity;
+  // console.log(props.quantity)
 
-    return (
+  function addOne () {
+    cart.addOneToCart(props.item._id)
+    setQuantityState(prevState => prevState + 1)
+  }
+
+  function deleteOne (params) {
+    cart.removeOneFromCart(props.item._id)
+    setQuantityState(prevState => prevState - 1)
+  }
+
+  function deleteAll () {
+    cart.deleteFromCart(props.item._id)
+  }
+
+  return (
     <div className='cart-item-wrapper'>
     <section className="cart-product-details">
       <img src={props.item.imgUrl} alt={props.item.name} />
@@ -15,11 +33,11 @@ export default function CartItem(props) {
       <p className="product-price">${props.item.new_price}</p>
     </section>
       <div className='add-remove-wrapper'>
-        <button onClick={() => cart.deleteFromCart(props.item._id)} className='item-remove-button'>Remove</button>
+        <button onClick={() => deleteAll() } className='item-remove-button'>Remove</button>
         <div className='operators-wrapper'>
-         <i onClick={() => cart.removeOneFromCart(props.item._id)} className="fa-solid fa-minus"></i>
-         <p>{productQuantity}</p>
-         <i onClick={() => cart.addOneToCart(props.item._id)}className="fa-solid fa-plus"></i>
+         <i onClick={() => deleteOne() } className="fa-solid fa-minus"></i>
+         <p>{quantityState}</p>
+         <i onClick={() => addOne() }className="fa-solid fa-plus"></i>
         </div>
       </div>
     </div>
