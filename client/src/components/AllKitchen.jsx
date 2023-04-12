@@ -4,7 +4,16 @@ import { CartContext } from '../CartContext'
 import { Link } from "react-router-dom"
 import { userContext } from "../authContext";
 
-const Kitchen = ({name, description, details, newPrice, oldPrice, type, imgUrl, id, fullState}) => {
+const Kitchen = ({
+  name,
+  description, 
+  details, 
+  newPrice, 
+  oldPrice, 
+  type, 
+  imgUrl, 
+  id, 
+  fullState}) => {
 
   const cart = useContext(CartContext)
   const { loggedIn } = useContext(userContext)
@@ -16,10 +25,36 @@ const Kitchen = ({name, description, details, newPrice, oldPrice, type, imgUrl, 
           </Link>
           {loggedIn  
         ? 
-        <button onClick={() => cart.addOneToCart(id)}>
+        // <button onClick={() => cart.addOneToCart(id)}>
+        //   <i className="fa-solid fa-plus"></i> Add
+        // </button>
+
+        // <button onClick={() => {
+        //   const newCartObj = {
+        //     ...fullState, 
+        //     user: JSON.parse(localStorage.getItem("user"))._id,
+        //     quantity: 1
+        //   }
+
+        //   cart.addOneToCart(id, newCartObj)
+        // }}>
+        //   <i className="fa-solid fa-plus"></i> Add
+        // </button>
+        // }}>
+        // : 
+          <button onClick={() => {
+          const newCartObj = {
+            ...fullState, 
+            user: JSON.parse(localStorage.getItem("user"))._id,
+            quantity: 1
+          }
+
+          cart.addOneToCart(id, newCartObj)
+        }}>
           <i className="fa-solid fa-plus"></i> Add
         </button>
-        : 
+      : 
+
       <Link to={"/auth"}>
           <button>
             Sign in 

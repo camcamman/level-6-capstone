@@ -27,10 +27,22 @@ const AllGroceries = ({
 
       {localStorage.getItem("token") 
       ? 
-        <button onClick={() => cart.addOneToCart(id)}>
-          <i className="fa-solid fa-plus"></i> Add
-        </button>
-      : 
+      //   <button onClick={() => cart.addOneToCart(id)}>
+      //     <i className="fa-solid fa-plus"></i> Add
+      //   </button>
+      // : 
+      <button onClick={() => {
+        const newCartObj = {
+          ...fullState, 
+          user: JSON.parse(localStorage.getItem("user"))._id,
+          quantity: 1
+        }
+
+        cart.addOneToCart(id, newCartObj)
+      }}>
+        <i className="fa-solid fa-plus"></i> Add
+      </button>
+    : 
       <Link to={"/auth"}>
           <button>
             Sign in 
