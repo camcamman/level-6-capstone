@@ -43,6 +43,7 @@ export function CartProvider({children}) {
                 ]
             )
         } else { 
+            console.log("false")
 
             const upCount = {
                 quantity: quantity +1 

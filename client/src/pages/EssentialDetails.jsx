@@ -13,7 +13,25 @@ const EssentialDetails = () => {
   const productQuantity = cart.getProductQuantity(id); // get the quantity of this product in the cart
   const { loggedIn } = useContext(userContext); // get the logged-in status from the user context
 
-    if (!isLoaded) return <h2>Loading...</h2>; // show loading message while data is being fetched
+  if (!isLoaded) return <h2>Loading...</h2>; // show loading message while data is being fetched
+
+  function addToCart () {
+    axios.get("/essentials") // make GET request to server to fetch essential products
+    .then(res => {
+      res.data.map(item => {
+        if (item._id === id) { // check if the ID of the current item matches the ID of the product we want to add to the cart
+          const newCartObj = { // create new cart object to add to cart
+            ...item, // include all properties of the essential item
+            user: JSON.parse(localStorage.getItem("user"))._id, // set the user ID to the ID of the currently logged in user
+            quantity: 1 // set the quantity to 1
+          }
+
+          cart.addOneToCart(id, newCartObj ) // add the new cart object to the cart
+        }
+      })
+    })
+    .catch(err => console.error(err))
+  }
     
   // return the JSX for the component
   return (
@@ -33,7 +51,7 @@ const EssentialDetails = () => {
                     <button onClick={() => cart.removeOneFromCart(id)}>-</button>
                   </>
                 ) : (
-                  <button onClick={() => cart.addOneToCart(id)}>Add to cart</button>
+                  <button onClick={() => addToCart()}>Add to cart</button>
                 )
               ) : (
                 <Link to={'/auth'}>
@@ -59,7 +77,7 @@ const EssentialDetails = () => {
         </section>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default EssentialDetails;
