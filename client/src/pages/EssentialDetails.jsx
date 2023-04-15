@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'; // import necessary hooks
+import { useContext } from 'react'; // import necessary hooks
 import { CartContext } from '../CartContext'; // import CartContext for cart management
 import { Link, useParams } from 'react-router-dom'; // import Link and useParams for routing
 import useEssentialDetails from '../hooks/useEssentialDetails'; // import custom hook
@@ -28,6 +28,7 @@ const EssentialDetails = () => {
 
           cart.addOneToCart(id, newCartObj ) // add the new cart object to the cart
         }
+        return null
       })
     })
     .catch(err => console.error(err))

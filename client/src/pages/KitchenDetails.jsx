@@ -1,5 +1,5 @@
 import axios from 'axios'; // Importing axios library for making API requests
-import React, { useState, useContext } from 'react'; // Importing necessary hooks from React
+import React, { useContext } from 'react'; // Importing necessary hooks from React
 import { Link, useParams } from 'react-router-dom'; // Importing Link and useParams components from React Router
 import { CartContext } from '../CartContext'; // Importing CartContext for accessing cart state and methods
 import useKitchenDetails from '../hooks/useKitchenDetails'; // Importing custom hook for fetching kitchen details from API
@@ -30,6 +30,7 @@ const GroceryDetails = () => {
 
           cart.addOneToCart(id, newCartObj ) // add the new cart object to the cart
         }
+        return null
       })
     })
     .catch(err => console.error(err))

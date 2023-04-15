@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { CartContext } from '../CartContext'
 import useGroceryDetails from '../hooks/useGroceryDetails'
@@ -28,6 +28,7 @@ const GroceryDetails = () => {
     
               cart.addOneToCart(id, newCartObj ) // add the new cart object to the cart
             }
+            return null
           })
         })
         .catch(err => console.error(err))
