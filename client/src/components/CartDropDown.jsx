@@ -35,7 +35,7 @@ const CartDropdown = () => {
     .then(res => {
       res.data.map(item => {
         if (JSON.parse(localStorage.getItem('user'))._id === item.user) {
-          console.log("match")
+          // console.log("match")
           // setApiCart(res.data)
           setApiCart(prevCart => {
             return[
@@ -125,14 +125,19 @@ const CartDropdown = () => {
         )
       })}
       {apiCart.map(item => {
-        return(
-          <CartItem
-            item={item}
-            key={item._id}
-            // quantity={item.quantity}
-            quantity={item.quantity}
-          />
-        )
+        if (item._id === cart.deletedId){
+          // console.log("match")
+          console.log("deleted")
+        } else {
+          return(
+            <CartItem
+              item={item}
+              key={item._id}
+              // quantity={item.quantity}
+              quantity={item.quantity}
+            />
+          )
+        }
       })}
         {/* <button>Checkout ({productCount} Items)</button> */}
       </div>

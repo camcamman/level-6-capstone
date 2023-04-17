@@ -13,6 +13,7 @@ export const CartContext = createContext({
 export function CartProvider({children}) {
 
     const [cartProducts, setCartProducts] = useState([]);
+    const [deletedId, setDeletedId] = useState("123")
     
     function getProductQuantity(id) {
         const quantity = cartProducts.find(product => product.id === id)?.quantity;
@@ -24,10 +25,11 @@ export function CartProvider({children}) {
         return quantity;
     }
 
-    function addOneToCart(id, newCart) {
+    function addOneToCart(id, newCart, posted) {
         const quantity = getProductQuantity(id);
 
-        if (quantity === 0) {
+        // if (quantity === 0) {
+        if (posted) {
 
             axios.post("/cart", newCart)
             .then(res => console.log(res.data))
@@ -46,9 +48,12 @@ export function CartProvider({children}) {
             console.log("false")
 
             const upCount = {
-                quantity: quantity +1 
+                quantity: quantity + 1 
             }
+            
             axios.patch(`cart/${id}`, upCount)
+            .then(res => console.log(res.data))
+            .catch(err => console.error(err))
 
             setCartProducts(
                 cartProducts.map(
@@ -68,7 +73,8 @@ export function CartProvider({children}) {
 
         if(quantity === 1) {
             deleteFromCart(id);
-            // axios.delete(`cart/${id}`)
+            axios.delete(`cart/${id}`)
+            setDeletedId(id)
         } else {
             const downCount = {
                 quantity: quantity -1 
@@ -90,6 +96,8 @@ export function CartProvider({children}) {
 
         axios.delete(`cart/${id}`)
 
+        setDeletedId(id)
+
         setCartProducts(
             cartProducts =>
             cartProducts.filter(currentProduct => {
@@ -109,6 +117,7 @@ export function CartProvider({children}) {
 
     const contextValue = {
         items: cartProducts,
+        deletedId,
         getProductQuantity,
         addOneToCart,
         removeOneFromCart,

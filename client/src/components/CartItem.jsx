@@ -12,17 +12,22 @@ export default function CartItem(props) {
   // console.log(props.quantity)
 
   function addOne () {
-    cart.addOneToCart(props.item._id)
+    cart.addOneToCart(props.item._id, null, false)
+    console.log(props.item._id)
     setQuantityState(prevState => prevState + 1)
   }
 
   function deleteOne (params) {
+    if (quantityState <= 1) {
+      deleteAll()
+    }
     cart.removeOneFromCart(props.item._id)
     setQuantityState(prevState => prevState - 1)
   }
 
   function deleteAll () {
-    cart.deleteFromCart(props.item._id)
+    // console.log(props.item._id)
+    cart.deleteFromCart(props.item._id, true)
   }
 
   return (
